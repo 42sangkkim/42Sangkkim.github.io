@@ -1,8 +1,8 @@
 {
-  "name": "protfolio",
+  "name": "portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "protfolio",
+  "description": "portfolio",
   "author": "42sangkkim",
   "keywords": [
     "gatsby"
