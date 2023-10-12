@@ -21,7 +21,7 @@ const ProjectCard = ({
 }: ProjectCardPropsType) => {
   const LinkedWrapper = ({ children }: {children: React.ReactNode}) => {
     if (link) {
-      return (<S.Wrapper as={Link} to={link} $direction={direction}>
+      return (<S.Wrapper as='a' href={link} $direction={direction}>
         {children}
       </S.Wrapper>)
     } else {
@@ -40,8 +40,8 @@ const ProjectCard = ({
             {title}
           </S.Title>
           <S.TagList>
-            {tags.map((tag) => (
-              <S.Tag>{tag}</S.Tag>
+            {tags.map((tag, index) => (
+              <S.Tag key={index}>{tag}</S.Tag>
             ))}
           </S.TagList>
           <S.Description>
@@ -58,8 +58,8 @@ const ProjectCard = ({
             {title}
           </S.Title>
           <S.TagList>
-            {tags.map((tag) => (
-              <S.Tag>{tag}</S.Tag>
+            {tags.map((tag, index) => (
+              <S.Tag key={index}>{tag}</S.Tag>
               ))}
           </S.TagList>
           <S.Description>

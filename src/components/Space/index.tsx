@@ -2,6 +2,7 @@ import React, { createRef, useEffect, useRef, useState } from "react";
 import * as S from "./index.styles"
 import { Network } from "vis-network";
 import projects from "../../data/projects";
+import star from "../../images/star_white.svg";
 
 export interface SpacePropsType {
   gridRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -35,18 +36,26 @@ const Space = ({gridRef, refArray}: SpacePropsType) => {
       }, {
           autoResize: true,
           nodes: {
-            shape: "dot",
-            size: 2,
+            shape: "image",
+            image: star,
+            size: 15,
             font: {
               size: 12,
               color: "white",
             },
             borderWidth: 1,
+            borderWidthSelected: 3,
             shadow: true,
             color: "white",
             fixed: {
               x: true,
               y: true,
+            },
+            chosen: {
+              node: false,
+              label: (values, id, selected, hovering) => {
+                values.size = 15;
+              },
             },
           },
           edges: {
@@ -84,7 +93,7 @@ const Space = ({gridRef, refArray}: SpacePropsType) => {
           backgroundColor: "black",
         }}
       />
-      <S.GridButton onClick={handleGridOnClick}>그리드 뷰로 보기</S.GridButton>
+      {/* <S.GridButton onClick={handleGridOnClick}>그리드 뷰로 보기</S.GridButton> */}
     </S.Wrapper>
   );
 }
