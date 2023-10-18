@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import Space from "../components/Space"
-import Projects from "../components/Projects"
-import { styled } from "styled-components"
-import projects from "../data/projects"
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import type { HeadFC, PageProps } from 'gatsby';
+import { styled } from 'styled-components';
+import Sky from '../components/Sky';
 
 const StyledButton = styled.div<{ $visible: boolean }>`
   position: fixed;
@@ -20,7 +18,8 @@ const StyledButton = styled.div<{ $visible: boolean }>`
 `;
 
 const Button = () => {
-  const [watchingContent, setWatchingContent] = useState<ContentType>('GraphView');
+  const [watchingContent, setWatchingContent] =
+    useState<ContentType>('GraphView');
   const updateScrollY = useCallback(() => {
     if (window.scrollY < window.innerHeight) {
       setWatchingContent('GraphView');
@@ -32,46 +31,38 @@ const Button = () => {
   }, [setWatchingContent]);
   useEffect(() => {
     window.addEventListener('scroll', updateScrollY);
-    return (() => {
+    return () => {
       window.removeEventListener('scroll', updateScrollY);
-    });
+    };
   });
 
   const handleMoveToGraph = (event: React.MouseEvent) => {
     event.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth'});
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <>
-      <StyledButton $visible={watchingContent !== 'GraphView'} onClick={handleMoveToGraph}>그래프 뷰로 보기</StyledButton>
-    </>
-  )
-}
-
-type ContentType = 
-  'GraphView' |
-  'Profile' |
-  'ListView' |
-  'GridView';
-
-const IndexPage: React.FC<PageProps> = () => {
-  const gridRef = useRef<HTMLDivElement | null>(null);
-  const projectRefs: React.RefObject<HTMLDivElement>[] = projects.map(() => (
-    React.createRef()
-  ));
-
-  return (
-    <>
-      <Space gridRef={gridRef} refArray={projectRefs}/>
-      <div ref={gridRef} tabIndex={-1}>
-        <Projects refArray={projectRefs}/>
-      </div>
-      <Button/>
+      <StyledButton
+        $visible={watchingContent !== 'GraphView'}
+        onClick={handleMoveToGraph}
+      >
+        그래프 뷰로 보기
+      </StyledButton>
     </>
   );
-}
+};
 
-export default IndexPage
+type ContentType = 'GraphView' | 'Profile' | 'ListView' | 'GridView';
+
+const IndexPage: React.FC<PageProps> = () => {
+  return (
+    <>
+      <Sky onClickNode={console.log} />
+    </>
+  );
+};
+
+export default IndexPage;
 
 export const Head: HeadFC = () => <title>Sangkkim's portfolio</title>;
