@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { styled } from 'styled-components';
 import Sky from '../components/Sky';
+import Menu from '../components/Menu';
 
 const StyledButton = styled.div<{ $visible: boolean }>`
   position: fixed;
@@ -58,6 +59,7 @@ type ContentType = 'GraphView' | 'Profile' | 'ListView' | 'GridView';
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
+      <Menu />
       <Sky onClickNode={console.log} />
     </>
   );
