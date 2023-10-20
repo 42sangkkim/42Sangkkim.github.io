@@ -39,6 +39,7 @@ export const HamburgerButton = styled.button<{ $active: boolean }>`
   background: none;
   border: none;
   outline: none;
+  cursor: pointer;
 
   .bar {
     position: absolute;
@@ -91,6 +92,7 @@ export const MenuItem = styled.li`
   align-items: start;
   color: white;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     transform: translateX(-1rem);

@@ -69,9 +69,10 @@ const options: vis.Options = {
 
 export interface SkyPropsType {
   onClickNode: (nodeId: string) => void;
+  onloadAnimation?: string;
 }
 
-const Sky = ({ onClickNode }: SkyPropsType) => {
+const Sky = ({ onClickNode, onloadAnimation }: SkyPropsType) => {
   const visRef = useRef<HTMLDivElement | null>(null);
   const visNodes = new DataSet<vis.Node>([]);
   const visEdges = new DataSet<vis.Edge>([]);
@@ -181,7 +182,7 @@ const Sky = ({ onClickNode }: SkyPropsType) => {
   }, [visRef]);
 
   return (
-    <S.Container>
+    <S.Container id="sky-container" className={onloadAnimation ?? ''}>
       <div
         ref={visRef}
         style={{

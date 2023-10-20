@@ -15,10 +15,28 @@ const shootingEffect = keyframes`
   }
 `;
 
+const slideInDown = keyframes`
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(0vh);
+  }
+`;
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: black;
+
+  &.slide-in-down {
+    animation: 0.7s ease-out 0s 1 ${slideInDown};
+  }
+
+  &.slide-out-up {
+    transform: translateY(-100vh);
+    transition: 0.7s ease-in;
+  }
 `;
 
 export const BlinkingStar = styled.li<{

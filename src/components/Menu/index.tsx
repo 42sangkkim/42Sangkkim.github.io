@@ -5,12 +5,16 @@ import { Link } from 'gatsby';
 
 const menus = [
   {
+    title: '홈',
+    path: '/',
+  },
+  {
     title: '프로필',
     path: '/profile',
   },
   {
     title: '리스트 페이지',
-    path: '/list',
+    path: '/project-list',
   },
   {
     title: '깃허브',
@@ -18,7 +22,11 @@ const menus = [
   },
 ];
 
-const Menu = () => {
+export interface MenuPropsType {
+  onRoute: (path: string) => void;
+}
+
+const Menu = ({ onRoute }: MenuPropsType) => {
   const [active, setActive] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -52,7 +60,13 @@ const Menu = () => {
               </S.MenuItem>
             ) : (
               <S.MenuItem key={`menu-${title}`}>
-                <Link to={path}>{title}</Link>
+                <span
+                  onClick={() => {
+                    onRoute(path);
+                  }}
+                >
+                  {title}
+                </span>
               </S.MenuItem>
             ),
           )}
